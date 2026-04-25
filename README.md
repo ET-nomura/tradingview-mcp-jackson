@@ -18,7 +18,7 @@
 ## ワンショットセットアップ
 　　(Windows / macOS 両対応・Node.js 自動インストール付き)
 
-### 事前準備(これだけやればOK)
+### 事前準備
 
 1. **Windowsの方**: Google Chrome をインストール済みにしておく
 2. **Macの方**: 特に追加準備なし(TradingView Desktop版を使うため)
@@ -27,10 +27,11 @@
 
 ※ Node.js は Claude Code が自動でインストールします(Windows: `winget` / Mac: `brew`)。
 
-### ワンショットプロンプト(これを Claude Code にコピペ)
+### ワンショットプロンプト(こちらをすべて Claude Code にコピペ)
 
 ````
-あなたはこれからClaude Codeに、TradingView MCP連携を一撃でセットアップしてください。途中でユーザーに聞かないと進めない箇所(TradingViewへのログイン等)以外は、全部あなたが代行してください。
+あなたはこれからClaude Codeに、TradingView MCP連携をワンショットでセットアップしてください。途中でユーザーに聞かないと進めない箇所(TradingViewへのログイン等)以外は、全部あなたが代行してください。
+よろしくお願いします。
 
 【最初にやること】
 - 現在のOSを判定する(`uname` または環境変数で判定。Windowsなら %OS% / Macなら `uname` が `Darwin`)
@@ -61,7 +62,7 @@
 
 ■ ステップ2: MCP設定への追記
 - `C:\Users\<ユーザー名>\.claude\.mcp.json` を読み込み(なければ新規作成)
-- 既存の `mcpServers` を**絶対に上書きしない**。マージする形で以下を追加:
+- 既存の `mcpServers` を**上書きしない**。マージする形で以下を追加:
 
   {
     "mcpServers": {
