@@ -1,35 +1,35 @@
-# TradingView MCP Jackson
+# TradingView MCP Jackson(日本語版)
 
-If you found this from the YouTube video — welcome. This is the improved fork. Everything you need is below.
+YouTube動画から来てくださった方、ようこそ。これは改良版フォークです。必要な情報はすべて以下にまとめてあります。
 
-Built on top of the original [tradingview-mcp](https://github.com/tradesdontlie/tradingview-mcp) by [@tradesdontlie](https://github.com/tradesdontlie). Full credit to them for the foundation. This fork adds a morning brief workflow, a rules config, and fixes the launch bug on TradingView Desktop v2.14+.
+オリジナルは [@tradesdontlie](https://github.com/tradesdontlie) 氏による [tradingview-mcp](https://github.com/tradesdontlie/tradingview-mcp) で、その土台に全面的にクレジットが帰属します。本フォークでは、モーニングブリーフのワークフロー、ルール設定ファイル、TradingView Desktop v2.14+ における起動バグの修正を追加しています。
 
 > [!WARNING]
-> **Not affiliated with TradingView Inc. or Anthropic.** This tool connects to your locally running TradingView Desktop app via Chrome DevTools Protocol. Review the [Disclaimer](#disclaimer) before use.
+> **TradingView Inc. および Anthropic とは一切関係ありません。** 本ツールは、ローカルで動作している TradingView Desktop アプリに Chrome DevTools Protocol 経由で接続します。利用前に必ず[免責事項](#免責事項)をご確認ください。
 
 > [!IMPORTANT]
-> **Requires a valid TradingView subscription.** This tool does not bypass any TradingView paywall. It reads from and controls the TradingView Desktop app already running on your machine.
+> **有効な TradingView 有料サブスクリプションが必要です。** 本ツールは TradingView の有料機能を回避するものではありません。あくまで、お使いのマシン上で既に動作している TradingView Desktop アプリの内容を読み取り、操作するだけです。
 
 > [!NOTE]
-> **All data processing happens locally.** Nothing is sent anywhere. No TradingView data leaves your machine.
+> **すべてのデータ処理はローカルで完結します。** 外部に何も送信されません。TradingView のデータがマシンの外に出ることはありません。
 
 ---
 
-## What's New in This Fork
+## このフォークの新機能
 
-| Feature | What it does |
-|---------|-------------|
-| `morning_brief` | One command that scans your watchlist, reads all your indicators, and returns structured data for Claude to generate your session bias |
-| `session_save` / `session_get` | Saves your daily brief to `~/.tradingview-mcp/sessions/` so you can compare today vs yesterday |
-| `rules.json` | Write your trading rules once — bias criteria, risk rules, watchlist. The morning brief applies them automatically every day |
-| Launch bug fix | Fixed `tv_launch` compatibility with TradingView Desktop v2.14+ |
-| `tv brief` CLI | Run your morning brief from the terminal in one word |
+| 機能 | 内容 |
+|------|------|
+| `morning_brief` | ウォッチリストをスキャンし、すべてのインジケーター値を読み取り、Claude がセッションバイアスを生成するための構造化データを返す1コマンド |
+| `session_save` / `session_get` | 毎日のブリーフを `~/.tradingview-mcp/sessions/` に保存。前日と今日の比較が可能 |
+| `rules.json` | 自分の取引ルール(バイアス基準・リスクルール・ウォッチリスト)を一度書いておけば、モーニングブリーフが毎日自動で適用 |
+| 起動バグ修正 | TradingView Desktop v2.14+ に対する `tv_launch` の互換性を修正 |
+| `tv brief` CLI | ターミナルからワンコマンドでモーニングブリーフを実行 |
 
 ---
 
-## One-Shot Setup
+## ワンショットセットアップ
 
-Paste this into Claude Code and it will handle everything:
+以下を Claude Code に貼り付ければ、すべて自動で処理してくれます:
 
 ```
 Set up TradingView MCP Jackson for me. 
@@ -39,22 +39,22 @@ Then copy rules.example.json to rules.json and open it so I can fill in my tradi
 Finally restart and verify with tv_health_check.
 ```
 
-Or follow the manual steps below.
+または、以下の手動セットアップ手順をご参照ください。
 
 ---
 
-## Prerequisites
+## 前提環境
 
-- **TradingView Desktop app** (paid subscription required for real-time data)
+- **TradingView Desktop アプリ**(リアルタイムデータには有料サブスクリプションが必要)
 - **Node.js 18+**
-- **Claude Code** (for MCP tools) or any terminal (for CLI)
-- **macOS, Windows, or Linux**
+- **Claude Code**(MCP ツール用)または任意のターミナル(CLI 用)
+- **macOS / Windows / Linux**
 
 ---
 
-## Quick Start
+## クイックスタート
 
-### 1. Clone and install
+### 1. クローンとインストール
 
 ```bash
 git clone https://github.com/LewisWJackson/tradingview-mcp-jackson.git ~/tradingview-mcp-jackson
@@ -62,20 +62,20 @@ cd ~/tradingview-mcp-jackson
 npm install
 ```
 
-### 2. Set up your rules
+### 2. ルールの設定
 
 ```bash
 cp rules.example.json rules.json
 ```
 
-Open `rules.json` and fill in:
-- Your **watchlist** (symbols to scan each morning)
-- Your **bias criteria** (what makes something bullish/bearish/neutral for you)
-- Your **risk rules** (the rules you want Claude to check before every session)
+`rules.json` を開き、以下を埋めてください:
+- **ウォッチリスト**(毎朝スキャンするシンボル)
+- **バイアス基準**(自分にとって何が強気/弱気/中立か)
+- **リスクルール**(毎セッション前に Claude にチェックさせたいルール)
 
-### 3. Launch TradingView with CDP
+### 3. CDP 有効化状態で TradingView を起動
 
-TradingView must be running with the debug port enabled.
+TradingView はデバッグポートが有効化された状態で起動している必要があります。
 
 **Mac:**
 ```bash
@@ -92,11 +92,11 @@ scripts\launch_tv_debug.bat
 ./scripts/launch_tv_debug_linux.sh
 ```
 
-Or use the MCP tool after setup: `"Use tv_launch to start TradingView in debug mode"`
+または、セットアップ後に MCP ツールを使う場合: *「tv_launch を使って TradingView をデバッグモードで起動して」*
 
-### 4. Add to Claude Code
+### 4. Claude Code に追加
 
-Add to `~/.claude/.mcp.json` (merge with any existing servers):
+`~/.claude/.mcp.json` に以下を追加(既存のサーバーがあればマージ):
 
 ```json
 {
@@ -109,33 +109,33 @@ Add to `~/.claude/.mcp.json` (merge with any existing servers):
 }
 ```
 
-Replace `YOUR_USERNAME` with your actual username. On Mac: `echo $USER` to check.
+`YOUR_USERNAME` は実際のユーザー名に置き換えてください。Mac の場合は `echo $USER` で確認できます。
 
-### 5. Verify
+### 5. 接続確認
 
-Restart Claude Code, then ask: *"Use tv_health_check to verify TradingView is connected"*
+Claude Code を再起動し、以下のように依頼します: *「tv_health_check を使って TradingView の接続を確認して」*
 
-### 6. Run your first morning brief
+### 6. はじめてのモーニングブリーフを実行
 
-Ask Claude: *"Run morning_brief and give me my session bias"*
+Claude に依頼: *「morning_brief を実行してセッションバイアスを教えて」*
 
-Or from the terminal:
+または、ターミナルから:
 ```bash
-npm link  # install tv CLI globally (one time)
+npm link  # tv CLI をグローバルにインストール(初回のみ)
 tv brief
 ```
 
 ---
 
-## Morning Brief Workflow
+## モーニングブリーフのワークフロー
 
-This is the feature that turns this from a toolkit into a daily habit.
+これがツールキットを「日々の習慣」に変える機能です。
 
-**Before every session:**
+**毎セッションの前に:**
 
-1. TradingView is open (launched with debug port)
-2. Run: `tv brief` in your terminal (or ask Claude: *"run morning_brief"*)
-3. Claude scans every symbol in your watchlist, reads your indicator values, applies your `rules.json` criteria, and prints:
+1. TradingView を開く(デバッグポート有効化状態で起動)
+2. ターミナルで実行: `tv brief`(または Claude に *「morning_brief を実行して」*)
+3. Claude がウォッチリスト内のすべてのシンボルをスキャンし、インジケーター値を読み取り、`rules.json` の基準を適用して、以下のように出力:
 
 ```
 BTCUSD  | BIAS: Bearish  | KEY LEVEL: 94,200  | WATCH: RSI crossing 50 on 4H
@@ -145,197 +145,199 @@ SOLUSD  | BIAS: Bullish  | KEY LEVEL: 178.50  | WATCH: Hold above 20 EMA
 Overall: Cautious session. BTC leading bearish, SOL the exception — watch for divergence.
 ```
 
-4. Save it: *"save this brief"* (uses `session_save`)
-5. Next morning, compare: *"get yesterday's session"* (uses `session_get`)
+4. 保存: *「このブリーフを保存して」*(`session_save` を使用)
+5. 翌朝、比較: *「昨日のセッションを取得して」*(`session_get` を使用)
 
 ---
 
-## What This Tool Does
+## このツールでできること
 
-- **Morning brief** — scan watchlist, read indicators, apply your rules, print session bias
-- **Pine Script development** — write, inject, compile, debug scripts with AI
-- **Chart navigation** — change symbols, timeframes, zoom to dates, add/remove indicators
-- **Visual analysis** — read indicator values, price levels, drawn levels from custom indicators
-- **Draw on charts** — trend lines, horizontal levels, rectangles, text
-- **Manage alerts** — create, list, delete price alerts
-- **Replay practice** — step through historical bars, practice entries and exits with P&L tracking
-- **Screenshots** — capture chart state
-- **Multi-pane layouts** — 2x2, 3x1 grids with different symbols per pane
-- **Stream data** — JSONL output from your live chart for monitoring scripts
-- **CLI access** — every tool is also a `tv` command, pipe-friendly JSON output
+- **モーニングブリーフ** — ウォッチリストをスキャンし、インジケーターを読み取り、ルールを適用してセッションバイアスを出力
+- **Pine Script 開発** — AI と協働でスクリプトの作成・注入・コンパイル・デバッグ
+- **チャート操作** — シンボル変更、時間軸変更、日付ジャンプ、インジケーター追加/削除
+- **ビジュアル分析** — インジケーター値、価格レベル、カスタムインジケーターの描画レベルを読み取り
+- **チャートへの描画** — トレンドライン、水平レベル、矩形、テキスト
+- **アラート管理** — 価格アラートの作成・一覧・削除
+- **リプレイ練習** — 過去のバーを1本ずつ進め、エントリー/イグジットを P&L トラッキング付きで練習
+- **スクリーンショット** — チャートの状態をキャプチャ
+- **マルチペインレイアウト** — 2x2、3x1 などのグリッドにペインごとに異なるシンボルを表示
+- **データストリーム** — ライブチャートから JSONL 形式で監視スクリプト用に出力
+- **CLI アクセス** — すべてのツールが `tv` コマンドとしても利用可能、パイプフレンドリーな JSON 出力
 
 ---
 
-## How Claude Knows Which Tool to Use
+## Claude はどのツールを使うかをどう判断するか
 
-Claude reads `CLAUDE.md` automatically when working in this project. It contains the full decision tree.
+Claude はこのプロジェクトで作業するとき、`CLAUDE.md` を自動的に読み込みます。そこに完全な意思決定ツリーが書かれています。
 
-| You say... | Claude uses... |
+| あなたが言うこと | Claude が使うツール |
 |------------|---------------|
-| "Run my morning brief" | `morning_brief` → apply rules → `session_save` |
-| "What was my bias yesterday?" | `session_get` |
-| "What's on my chart?" | `chart_get_state` → `data_get_study_values` → `quote_get` |
-| "Give me a full analysis" | `quote_get` → `data_get_study_values` → `data_get_pine_lines` → `data_get_pine_labels` → `capture_screenshot` |
-| "Switch to BTCUSD daily" | `chart_set_symbol` → `chart_set_timeframe` |
-| "Write a Pine Script for..." | `pine_set_source` → `pine_smart_compile` → `pine_get_errors` |
-| "Start replay at March 1st" | `replay_start` → `replay_step` → `replay_trade` |
-| "Set up a 4-chart grid" | `pane_set_layout` → `pane_set_symbol` |
-| "Draw a level at 94200" | `draw_shape` (horizontal_line) |
+| 「モーニングブリーフを実行して」 | `morning_brief` → ルール適用 → `session_save` |
+| 「昨日のバイアスはどうだった?」 | `session_get` |
+| 「今チャートに何が出てる?」 | `chart_get_state` → `data_get_study_values` → `quote_get` |
+| 「フル分析をして」 | `quote_get` → `data_get_study_values` → `data_get_pine_lines` → `data_get_pine_labels` → `capture_screenshot` |
+| 「BTCUSDの日足に切り替えて」 | `chart_set_symbol` → `chart_set_timeframe` |
+| 「〜のPine Scriptを書いて」 | `pine_set_source` → `pine_smart_compile` → `pine_get_errors` |
+| 「3月1日からリプレイを始めて」 | `replay_start` → `replay_step` → `replay_trade` |
+| 「4分割チャートにして」 | `pane_set_layout` → `pane_set_symbol` |
+| 「94200にラインを引いて」 | `draw_shape`(horizontal_line) |
 
 ---
 
-## Tool Reference (81 MCP tools)
+## ツールリファレンス(MCP ツール 81 種)
 
-### Morning Brief (new in this fork)
+### モーニングブリーフ(本フォークの新機能)
 
-| Tool | What it does |
-|------|-------------|
-| `morning_brief` | Scan watchlist, read indicators, return structured data for session bias. Reads `rules.json` automatically. |
-| `session_save` | Save the generated brief to `~/.tradingview-mcp/sessions/YYYY-MM-DD.json` |
-| `session_get` | Retrieve today's brief (or yesterday's if today not saved yet) |
-
-### Chart Reading
-
-| Tool | When to use | Output size |
-|------|------------|-------------|
-| `chart_get_state` | First call — get symbol, timeframe, all indicator names + IDs | ~500B |
-| `data_get_study_values` | Read current RSI, MACD, BB, EMA values from all indicators | ~500B |
-| `quote_get` | Get latest price, OHLC, volume | ~200B |
-| `data_get_ohlcv` | Get price bars. **Use `summary: true`** for compact stats | 500B (summary) / 8KB (100 bars) |
-
-### Custom Indicator Data (Pine Drawings)
-
-Read `line.new()`, `label.new()`, `table.new()`, `box.new()` output from any visible Pine indicator.
-
-| Tool | When to use |
-|------|------------|
-| `data_get_pine_lines` | Horizontal price levels (support/resistance, session levels) |
-| `data_get_pine_labels` | Text annotations + prices ("PDH 24550", "Bias Long") |
-| `data_get_pine_tables` | Data tables (session stats, analytics dashboards) |
-| `data_get_pine_boxes` | Price zones as {high, low} pairs |
-
-**Always use `study_filter`** to target a specific indicator: `study_filter: "MyIndicator"`.
-
-### Chart Control
-
-| Tool | What it does |
-|------|-------------|
-| `chart_set_symbol` | Change ticker (BTCUSD, AAPL, ES1!, NYMEX:CL1!) |
-| `chart_set_timeframe` | Change resolution (1, 5, 15, 60, D, W, M) |
-| `chart_set_type` | Change style (Candles, HeikinAshi, Line, Area, Renko) |
-| `chart_manage_indicator` | Add/remove indicators. **Use full names**: "Relative Strength Index" not "RSI" |
-| `chart_scroll_to_date` | Jump to a date (ISO: "2025-01-15") |
-| `indicator_set_inputs` / `indicator_toggle_visibility` | Change indicator settings, show/hide |
-
-### Pine Script Development
-
-| Tool | Step |
+| ツール | 内容 |
 |------|------|
-| `pine_set_source` | 1. Inject code into editor |
-| `pine_smart_compile` | 2. Compile with auto-detection + error check |
-| `pine_get_errors` | 3. Read compilation errors if any |
-| `pine_get_console` | 4. Read log.info() output |
-| `pine_save` | 5. Save to TradingView cloud |
-| `pine_analyze` | Offline static analysis (no chart needed) |
-| `pine_check` | Server-side compile check (no chart needed) |
+| `morning_brief` | ウォッチリストをスキャンし、インジケーターを読み取り、セッションバイアス用の構造化データを返す。`rules.json` を自動で読み込む |
+| `session_save` | 生成したブリーフを `~/.tradingview-mcp/sessions/YYYY-MM-DD.json` に保存 |
+| `session_get` | 今日のブリーフを取得(未保存なら昨日のもの) |
 
-### Replay Mode
+### チャート読み取り
 
-| Tool | Step |
+| ツール | 用途 | 出力サイズ |
+|------|------|-------------|
+| `chart_get_state` | 最初に呼ぶ — シンボル、時間軸、全インジケーター名+IDを取得 | 約500B |
+| `data_get_study_values` | 全インジケーターの現在値(RSI, MACD, BB, EMA など)を取得 | 約500B |
+| `quote_get` | 最新価格、OHLC、出来高を取得 | 約200B |
+| `data_get_ohlcv` | 価格バーを取得。**`summary: true` 推奨**(コンパクトな統計値) | 500B(summary)/ 8KB(100バー) |
+
+### カスタムインジケーターのデータ(Pine 描画)
+
+任意の表示中の Pine インジケーターから `line.new()`、`label.new()`、`table.new()`、`box.new()` の出力を読み取ります。
+
+| ツール | 用途 |
 |------|------|
-| `replay_start` | Enter replay at a date |
-| `replay_step` | Advance one bar |
-| `replay_autoplay` | Auto-advance (set speed in ms) |
-| `replay_trade` | Buy/sell/close positions |
-| `replay_status` | Check position, P&L, date |
-| `replay_stop` | Return to realtime |
+| `data_get_pine_lines` | 水平価格レベル(サポート/レジスタンス、セッションレベル) |
+| `data_get_pine_labels` | テキスト注釈+価格(例: "PDH 24550"、"Bias Long") |
+| `data_get_pine_tables` | データテーブル(セッション統計、分析ダッシュボード) |
+| `data_get_pine_boxes` | 価格ゾーン({high, low} ペア) |
 
-### Multi-Pane, Alerts, Drawings, UI
+**特定のインジケーターを対象にするには必ず `study_filter` を使用**: 例 `study_filter: "MyIndicator"`。
 
-| Tool | What it does |
-|------|-------------|
-| `pane_set_layout` | Change grid: `s`, `2h`, `2v`, `2x2`, `4`, `6`, `8` |
-| `pane_set_symbol` | Set symbol on any pane |
-| `draw_shape` | Draw horizontal_line, trend_line, rectangle, text |
-| `alert_create` / `alert_list` / `alert_delete` | Manage price alerts |
-| `batch_run` | Run action across multiple symbols/timeframes |
-| `watchlist_get` / `watchlist_add` | Read/modify watchlist |
-| `capture_screenshot` | Screenshot (regions: full, chart, strategy_tester) |
-| `tv_launch` / `tv_health_check` | Launch TradingView and verify connection |
+### チャート制御
+
+| ツール | 内容 |
+|------|------|
+| `chart_set_symbol` | ティッカーを変更(BTCUSD, AAPL, ES1!, NYMEX:CL1!) |
+| `chart_set_timeframe` | 時間軸を変更(1, 5, 15, 60, D, W, M) |
+| `chart_set_type` | チャート種別を変更(Candles, HeikinAshi, Line, Area, Renko) |
+| `chart_manage_indicator` | インジケーター追加/削除。**フルネームを使うこと**: "RSI" ではなく "Relative Strength Index" |
+| `chart_scroll_to_date` | 日付ジャンプ(ISO形式: "2025-01-15") |
+| `indicator_set_inputs` / `indicator_toggle_visibility` | インジケーター設定変更、表示/非表示 |
+
+### Pine Script 開発
+
+| ツール | ステップ |
+|------|------|
+| `pine_set_source` | 1. エディタにコードを注入 |
+| `pine_smart_compile` | 2. 自動検出+エラーチェック付きでコンパイル |
+| `pine_get_errors` | 3. コンパイルエラーがあれば読み取り |
+| `pine_get_console` | 4. log.info() の出力を読み取り |
+| `pine_save` | 5. TradingView クラウドに保存 |
+| `pine_analyze` | オフライン静的解析(チャート不要) |
+| `pine_check` | サーバーサイドのコンパイルチェック(チャート不要) |
+
+### リプレイモード
+
+| ツール | ステップ |
+|------|------|
+| `replay_start` | 指定日付でリプレイ開始 |
+| `replay_step` | 1バー進める |
+| `replay_autoplay` | 自動再生(速度をミリ秒で指定) |
+| `replay_trade` | ポジションの売買・決済 |
+| `replay_status` | ポジション、P&L、日付を確認 |
+| `replay_stop` | リアルタイムに戻る |
+
+### マルチペイン、アラート、描画、UI
+
+| ツール | 内容 |
+|------|------|
+| `pane_set_layout` | グリッド変更: `s`, `2h`, `2v`, `2x2`, `4`, `6`, `8` |
+| `pane_set_symbol` | 任意ペインのシンボルを設定 |
+| `draw_shape` | 描画: horizontal_line, trend_line, rectangle, text |
+| `alert_create` / `alert_list` / `alert_delete` | 価格アラート管理 |
+| `batch_run` | 複数シンボル/時間軸でアクションを横断実行 |
+| `watchlist_get` / `watchlist_add` | ウォッチリストの読み取り/変更 |
+| `capture_screenshot` | スクリーンショット(対象: full, chart, strategy_tester) |
+| `tv_launch` / `tv_health_check` | TradingView 起動と接続確認 |
 
 ---
 
-## CLI Commands
+## CLI コマンド
 
 ```bash
-tv brief                           # run morning brief
-tv session get                     # get today's saved brief
-tv session save --brief "..."      # save a brief
+tv brief                           # モーニングブリーフを実行
+tv session get                     # 今日の保存済みブリーフを取得
+tv session save --brief "..."      # ブリーフを保存
 
-tv status                          # check connection
-tv quote                           # current price
-tv symbol BTCUSD                   # change symbol
-tv ohlcv --summary                 # price summary
-tv screenshot -r chart             # capture chart
-tv pine compile                    # compile Pine Script
-tv pane layout 2x2                 # 4-chart grid
-tv stream quote | jq '.close'      # monitor price ticks
+tv status                          # 接続確認
+tv quote                           # 現在価格
+tv symbol BTCUSD                   # シンボル変更
+tv ohlcv --summary                 # 価格サマリー
+tv screenshot -r chart             # チャートをキャプチャ
+tv pine compile                    # Pine Script コンパイル
+tv pane layout 2x2                 # 4チャートグリッド
+tv stream quote | jq '.close'      # 価格ティックを監視
 ```
 
-Full command list: `tv --help`
+全コマンド一覧: `tv --help`
 
 ---
 
-## Troubleshooting
+## トラブルシューティング
 
-| Problem | Solution |
-|---------|----------|
-| `cdp_connected: false` | TradingView isn't running with `--remote-debugging-port=9222`. Use the launch script. |
-| `ECONNREFUSED` | TradingView isn't running or port 9222 is blocked |
-| MCP server not showing in Claude Code | Check `~/.claude/.mcp.json` syntax, restart Claude Code |
-| `tv` command not found | Run `npm link` from the project directory |
-| `morning_brief` — "No rules.json found" | Run `cp rules.example.json rules.json` and fill it in |
-| `morning_brief` — watchlist empty | Add symbols to the `watchlist` array in `rules.json` |
-| Tools return stale data | TradingView still loading — wait a few seconds |
-| Pine Editor tools fail | Open Pine Editor panel first: `ui_open_panel pine-editor open` |
+| 問題 | 解決方法 |
+|------|----------|
+| `cdp_connected: false` | TradingView が `--remote-debugging-port=9222` 付きで起動していない。起動スクリプトを使用してください |
+| `ECONNREFUSED` | TradingView が起動していないか、ポート 9222 がブロックされている |
+| Claude Code に MCP サーバーが表示されない | `~/.claude/.mcp.json` の構文を確認し、Claude Code を再起動 |
+| `tv` コマンドが見つからない | プロジェクトディレクトリで `npm link` を実行 |
+| `morning_brief` — "No rules.json found" | `cp rules.example.json rules.json` を実行して中身を埋める |
+| `morning_brief` — ウォッチリストが空 | `rules.json` の `watchlist` 配列にシンボルを追加 |
+| ツールが古いデータを返す | TradingView がまだロード中 — 数秒待つ |
+| Pine Editor 系ツールが失敗する | Pine Editor パネルを先に開く: `ui_open_panel pine-editor open` |
 
 ---
 
-## Architecture
+## アーキテクチャ
 
 ```
 Claude Code  ←→  MCP Server (stdio)  ←→  CDP (port 9222)  ←→  TradingView Desktop (Electron)
 ```
 
-- **78 original tools** + **3 morning brief tools** = 81 MCP tools total
-- **Transport**: MCP over stdio + CLI (`tv` command)
-- **Connection**: Chrome DevTools Protocol on localhost:9222
-- **No external network calls** — everything runs locally
-- **Zero extra dependencies** beyond the original
+- **オリジナル 78 ツール** + **モーニングブリーフ 3 ツール** = 計 **81 個の MCP ツール**
+- **トランスポート**: stdio 経由の MCP + CLI(`tv` コマンド)
+- **接続**: localhost:9222 上の Chrome DevTools Protocol
+- **外部ネットワーク通信なし** — すべてローカルで完結
+- **追加の依存関係ゼロ** — オリジナル以上の依存追加なし
 
 ---
 
-## Credits
+## クレジット
 
-This fork is built on [tradingview-mcp](https://github.com/tradesdontlie/tradingview-mcp) by [@tradesdontlie](https://github.com/tradesdontlie). The original tool is the foundation — go star their repo.
+本フォークは [@tradesdontlie](https://github.com/tradesdontlie) 氏による [tradingview-mcp](https://github.com/tradesdontlie/tradingview-mcp) を基盤としています。オリジナルツールこそが土台です — 元リポジトリにスターを付けてあげてください。
+
+また、本フォークのベースとなった改良版 [tradingview-mcp-jackson](https://github.com/LewisWJackson/tradingview-mcp-jackson) を公開してくださっている [@LewisWJackson](https://github.com/LewisWJackson) 氏にも感謝します。
 
 ---
 
-## Disclaimer
+## 免責事項
 
-This project is provided **for personal, educational, and research purposes only**.
+本プロジェクトは、**個人・教育・研究目的のみで提供されます**。
 
-This tool uses the Chrome DevTools Protocol (CDP), a standard debugging interface built into all Chromium-based applications. It does not reverse engineer any proprietary TradingView protocol, connect to TradingView's servers, or bypass any access controls. The debug port must be explicitly enabled by the user via a standard Chromium command-line flag.
+本ツールは Chrome DevTools Protocol(CDP)を使用しています。これはすべての Chromium 系アプリケーションに標準搭載されているデバッグインターフェースです。TradingView の独自プロトコルをリバースエンジニアリングしたり、TradingView のサーバーに接続したり、アクセス制御を回避することはありません。デバッグポートは、Chromium 標準のコマンドラインフラグを介して、ユーザーが明示的に有効化する必要があります。
 
-By using this software you agree that:
+本ソフトウェアを使用することにより、以下に同意したものとみなされます:
 
-1. You are solely responsible for ensuring your use complies with [TradingView's Terms of Use](https://www.tradingview.com/policies/) and all applicable laws.
-2. This tool accesses undocumented internal TradingView APIs that may change at any time.
-3. This tool must not be used to redistribute, resell, or commercially exploit TradingView's market data.
-4. The authors are not responsible for any account bans, suspensions, or other consequences.
+1. [TradingView 利用規約](https://www.tradingview.com/policies/)および適用されるすべての法律に準拠する責任は、すべてユーザーにあります。
+2. 本ツールは、いつでも変更される可能性のある TradingView の非公開内部 API にアクセスします。
+3. 本ツールは、TradingView の市場データの再配布、再販、商業的利用には使用してはなりません。
+4. 著作者は、アカウントの BAN、停止、その他の結果について一切の責任を負いません。
 
-**Use at your own risk.**
+**自己責任でご利用ください。**
 
-## License
+## ライセンス
 
-MIT — see [LICENSE](LICENSE). Applies to source code only, not to TradingView's software, data, or trademarks.
+MIT — [LICENSE](LICENSE) を参照してください。本ライセンスはソースコードのみに適用され、TradingView のソフトウェア、データ、商標には適用されません。
