@@ -16,10 +16,10 @@
 ---
 
 ## ワンショットセットアップ
-　　(Windows / macOS 両対応・Node.js 自動インストール付き)
 
 ### 事前準備
-
+　(Windows / macOS 両対応・Node.js 自動インストール)
+ 
 1. **Windowsの方**: Google Chrome をインストール済みにしておく
 2. **Macの方**: 特に追加準備なし(TradingView Desktop版を使うため)
 3. TradingView の有料プランにログインできる状態にしておく
