@@ -56,8 +56,8 @@
 
 ■ ステップ1: リポジトリのクローンと依存インストール
 - ユーザー名を `echo %USERNAME%` で取得
-- `C:\Users\<ユーザー名>\tradingview-mcp-jackson` に
-  https://github.com/LewisWJackson/tradingview-mcp-jackson.git をクローン
+- `C:\Users\<ユーザー名>\tradingview-mcp-et` に
+  https://github.com/ET-nomura/tradingview-mcp-ET.git をクローン
 - そのディレクトリで `npm install` を実行
 
 ■ ステップ2: MCP設定への追記
@@ -68,7 +68,7 @@
     "mcpServers": {
       "tradingview": {
         "command": "node",
-        "args": ["C:\\Users\\<ユーザー名>\\tradingview-mcp-jackson\\src\\server.js"]
+        "args": ["C:\\Users\\<ユーザー名>\\tradingview-mcp-et\\src\\server.js"]
       }
     }
   }
@@ -76,7 +76,7 @@
 - JSON内のパスはバックスラッシュ2つ(`\\`)でエスケープ
 
 ■ ステップ3: rules.json の準備
-- `~/tradingview-mcp-jackson/rules.example.json` を `rules.json` にコピー
+- `~/tradingview-mcp-et/rules.example.json` を `rules.json` にコピー
 - ユーザーに「後でルールを編集してください」と一言
 
 ■ ステップ4: CDP有効ChromeでTradingView Webを起動
@@ -116,8 +116,8 @@
 - 既にあるならスキップ
 
 ■ ステップ2: リポジトリのクローンと依存インストール
-- `~/tradingview-mcp-jackson` に
-  https://github.com/LewisWJackson/tradingview-mcp-jackson.git をクローン
+- `~/tradingview-mcp-et` に
+  https://github.com/ET-nomura/tradingview-mcp-ET.git をクローン
 - そのディレクトリで `npm install` を実行
 
 ■ ステップ3: MCP設定への追記
@@ -129,7 +129,7 @@
     "mcpServers": {
       "tradingview": {
         "command": "node",
-        "args": ["/Users/<ユーザー名>/tradingview-mcp-jackson/src/server.js"]
+        "args": ["/Users/<ユーザー名>/tradingview-mcp-et/src/server.js"]
       }
     }
   }
@@ -137,7 +137,7 @@
 - ユーザー名は `$HOME` から動的に取得して埋める
 
 ■ ステップ4: rules.json の準備
-- `~/tradingview-mcp-jackson/rules.example.json` を `rules.json` にコピー
+- `~/tradingview-mcp-et/rules.example.json` を `rules.json` にコピー
 - ユーザーに「後でルールを編集してください」と一言
 
 ■ ステップ5(Mac版): TradingView Desktopを起動
@@ -214,8 +214,8 @@
 ### 1. クローンとインストール
 
 ```bash
-git clone https://github.com/LewisWJackson/tradingview-mcp-jackson.git ~/tradingview-mcp-jackson
-cd ~/tradingview-mcp-jackson
+git clone https://github.com/ET-nomura/tradingview-mcp-ET.git ~/tradingview-mcp-et
+cd ~/tradingview-mcp-et
 npm install
 ```
 
@@ -260,7 +260,7 @@ scripts\launch_tv_debug.bat
   "mcpServers": {
     "tradingview": {
       "command": "node",
-      "args": ["/Users/YOUR_USERNAME/tradingview-mcp-jackson/src/server.js"]
+      "args": ["/Users/YOUR_USERNAME/tradingview-mcp-et/src/server.js"]
     }
   }
 }
